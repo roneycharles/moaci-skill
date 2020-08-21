@@ -31,20 +31,36 @@ app.setHandler({
 
   async MoaciIntent() {
     const moaciReq = await getMoaciRequest();
+
     this.tell(moaciReq);
   },
+
+  async MaxConsumptionIntent() {
+    const moaciReq = await getMaxConsumptionRequest();
+
+    this.tell("O consumo máximo do sistema é: " + moaciReq);
+  }
 
 });
 
 async function getMoaciRequest() {
   const options = {
-    uri: 'https://200.19.179.216/alexa/user_dcf5d08d-f20b-4825-ac3b-d40e9769c75e/home_appliance/now',
+    uri: 'https://www.omdbapi.com/?i=tt1179056&apikey=76c8a8a0',
     json: true
   };
-  const moaciReq = await requestPromise(options);
-  
-  console.log(moaciReq)
-  return 
+  const data = await requestPromise(options);
+
+  return data.Title;
+}
+
+async function getMaxConsumptionRequest() {
+  const options = {
+    uri: 'http://200.19.179.216:443/alexa/user_dcf5d08d-f20b-4825-ac3b-d40e9769c75e/consumption/now',
+    json: true
+  };
+  const data = await requestPromise(options);
+
+  return data.home_consumption;
 }
 
 module.exports = { app };
