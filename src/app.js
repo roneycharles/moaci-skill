@@ -35,10 +35,22 @@ app.setHandler({
     this.tell(moaciReq);
   },
 
-  async MaxConsumptionIntent() {
-    const moaciReq = await getMaxConsumptionRequest();
+  async DevicesTurnOnIntent() {
+    const moaciReq = await getDevicesTurnOn();
 
-    this.tell("O consumo máximo do sistema é: " + moaciReq);
+    this.tell("Os dispositivos ligados agora são: " + moaciReq);
+  },
+
+  async CurrentConsumptionIntent() {
+    const moaciReq = await getCurrentConsumption();
+
+    this.tell("O consumo atual do sistema é: " + moaciReq);
+  },
+
+  async DeviceMaxConsumptionIntent() {
+    const moaciReq = await getDeviceMaxConsumption();
+
+    this.tell("O dispositivo com maior consumo no momento é: " + moaciReq);
   }
 
 });
@@ -53,7 +65,7 @@ async function getMoaciRequest() {
   return data.Title;
 }
 
-async function getMaxConsumptionRequest() {
+async function getCurrentConsumption() {
   const options = {
     uri: 'http://200.19.179.216:443/alexa/user_dcf5d08d-f20b-4825-ac3b-d40e9769c75e/consumption/now',
     json: true
@@ -61,6 +73,26 @@ async function getMaxConsumptionRequest() {
   const data = await requestPromise(options);
 
   return data.home_consumption;
+}
+
+async function getDevicesTurnOn() {
+  const options = {
+    uri: 'http://200.19.179.216:443/alexa/user_dcf5d08d-f20b-4825-ac3b-d40e9769c75e/home_appliance/now',
+    json: true
+  };
+  const data = await requestPromise(options);
+
+  return data.home_appliance;
+}
+
+async function getDeviceMaxConsumption() {
+  const options = {
+    uri: 'http://200.19.179.216:443/alexa/user_dcf5d08d-f20b-4825-ac3b-d40e9769c75e//home_appliance/max_consumption',
+    json: true
+  };
+  const data = await requestPromise(options);
+
+  return data.home_appliance;
 }
 
 module.exports = { app };

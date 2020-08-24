@@ -10,12 +10,27 @@
       ]
     },
     {
-      "name": "MaxConsumptionIntent",
+      "name": "DevicesTurnOnIntent",
       "phrases": [
-        "qual o consumo máximo do sistema",
-        "máximo de consumo",
-        "máximo"
+        "quais eletrodomésticos estão ligados agora",
+        "quais eletrônicos estão ligados agora",
+        "dispositivos ativos no momento"
       ]
+    },
+    {
+      "name": "CurrentConsumptionIntent",
+      "phrases": [
+        "qual o consumo atual do sistema",
+        "consumo atual"
+      ]
+    },
+    {
+      "name": "DeviceMaxConsumptionIntent",
+      "phrases": [
+        "qual dispositivo com maior consumo no sistema",
+        "dispositivo com maior consumo"
+      ]
+      
     }
 
   ],
