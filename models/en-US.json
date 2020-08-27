@@ -3,11 +3,7 @@
   "intents": [
     {
       "name": "MoaciIntent",
-      "phrases": [
-        "preciso de ajuda", 
-        "como você pode me ajudar.", 
-        "ajuda"
-      ]
+      "phrases": []
     },
     {
       "name": "DevicesTurnOnIntent",

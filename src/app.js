@@ -29,41 +29,42 @@ app.setHandler({
     return this.toIntent('MoaciIntent');
   },
 
-  async MoaciIntent() {
-    const moaciReq = await getMoaciRequest();
+  MoaciIntent() {
+    // const moaciReq = await getMoaciRequest();
 
-    this.tell(moaciReq);
+    // this.tell(moaciReq);
+    this.ask('Olá você está no gerenciador de consumo do moaci, em que posso ajudar?');
   },
 
   async DevicesTurnOnIntent() {
     const moaciReq = await getDevicesTurnOn();
 
-    this.tell("Os dispositivos ligados agora são: " + moaciReq);
+    this.tell('Os dispositivos ligados agora são: ' + moaciReq);
   },
 
   async CurrentConsumptionIntent() {
     const moaciReq = await getCurrentConsumption();
 
-    this.tell("O consumo atual do sistema é: " + moaciReq);
+    this.tell('O consumo atual do sistema é: ' + moaciReq);
   },
 
   async DeviceMaxConsumptionIntent() {
     const moaciReq = await getDeviceMaxConsumption();
 
-    this.tell("O dispositivo com maior consumo no momento é: " + moaciReq);
+    this.tell('O dispositivo com maior consumo no momento é: ' + moaciReq);
   }
 
 });
 
-async function getMoaciRequest() {
-  const options = {
-    uri: 'https://www.omdbapi.com/?i=tt1179056&apikey=76c8a8a0',
-    json: true
-  };
-  const data = await requestPromise(options);
+// async function getMoaciRequest() {
+//   const options = {
+//     uri: 'https://www.omdbapi.com/?i=tt1179056&apikey=76c8a8a0',
+//     json: true
+//   };
+//   const data = await requestPromise(options);
 
-  return data.Title;
-}
+//   return data.Title;
+// }
 
 async function getCurrentConsumption() {
   const options = {
